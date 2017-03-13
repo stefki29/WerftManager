@@ -27,7 +27,7 @@ public class GameControler : MonoBehaviour {
        
 
     }
-    public int motoren
+    public int Motoren
     {
         get
         {
@@ -47,7 +47,7 @@ public class GameControler : MonoBehaviour {
 
 
     }
-    public int bäder
+    public int Bäder
     {
         get
         {

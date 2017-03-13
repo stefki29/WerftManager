@@ -9,7 +9,7 @@ public class TagesScript : MonoBehaviour {
     public AuftragsController auftragsController ;
     public float Taggeschwiendigkeit = 1;
 
-    public int tag ;
+    public new int tag;
 
     public void Start()
     {
