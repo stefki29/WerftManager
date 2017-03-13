@@ -7,7 +7,6 @@ public class TagesScript : MonoBehaviour {
     public Text tage;
     public Text anzAufträge;
     public AuftragsController auftragsController ;
-
     public float Taggeschwiendigkeit = 1;
 
     public int tag ;
@@ -27,7 +26,7 @@ public class TagesScript : MonoBehaviour {
         tage.text = "Tag: " + tag;
         auftragsController.Auftrageüberprüfen();
         anzAufträge.text = "Es gibt " + auftragsController.anzAufträge + " Aufträge";
-
+        auftragsController.Abarbeiten();
     }
 
 }
