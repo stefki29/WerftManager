@@ -4,7 +4,7 @@ using UnityEngine;
 [System.Serializable]
 public class AuftragsClass {
 
-    public enum KomponentenID
+    public enum KomponentenID : int
     {
         Motor = 0x000,
         Bad = 0x000

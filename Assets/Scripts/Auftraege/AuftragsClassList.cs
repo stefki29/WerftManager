@@ -5,6 +5,6 @@ using UnityEngine;
 public class AuftragsClassList : ScriptableObject {
 
     public List<AuftragsClass> auftragsList;
-
+    
 	
 }

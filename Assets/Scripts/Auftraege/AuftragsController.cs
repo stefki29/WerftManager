@@ -5,12 +5,19 @@ using UnityEditor;
 using UnityEngine.UI;
 public class AuftragsController : MonoBehaviour {
     AuftragsClassList auftragsClassList;
+    public GameControler gameControler;
+
     public int anzAufträge = 0;
+
     public int auftragsNummer = 0;
+
     public bool wirdverarbeitet = false;
-    public List<AuftragsClass> test;
+
+    public List<AuftragsClass> jobs;
 
     public Text auftrag;
+
+
     private void Start()
     {
         
@@ -22,7 +29,7 @@ public class AuftragsController : MonoBehaviour {
     {
         if (auftragsClassList.auftragsList.Count == 3)
         {
-            test.Add(auftragsClassList.auftragsList[0]);
+           
             
         }
         else
@@ -50,28 +57,6 @@ public class AuftragsController : MonoBehaviour {
 
     }
 
-   public void Abarbeiten()
-    {
-        if(wirdverarbeitet == true)
-        {
-            if(auftragsClassList.auftragsList[auftragsNummer].Zeit == auftragsClassList.auftragsList[auftragsNummer].verstricheneZeit)
-            {
-                Debug.Log("Es werden " + auftragsClassList.auftragsList[auftragsNummer].Bezahlung + " € ihrem Konto gut geschrieben");
-                
-                wirdverarbeitet = false;
-                auftrag.text = "Der Auftrag :" + auftragsClassList.auftragsList[auftragsNummer].auftragsID + " wurde Fertig gestellt";
-                AuftragLöschen(auftragsNummer);
-            }
-            else
-            {
-                auftrag.text = "Der Auftrag :" + auftragsClassList.auftragsList[auftragsNummer].auftragsID + " wird bearbeitet";
-                auftragsClassList.auftragsList[auftragsNummer].verstricheneZeit++;
-                Debug.Log("Der auftrag benötigt noch " + (auftragsClassList.auftragsList[auftragsNummer].Zeit - auftragsClassList.auftragsList[auftragsNummer].verstricheneZeit));
-            }
-
-        }
-    }
-
     public void Auftragstarten(int index)
     {
         if(wirdverarbeitet == true)
@@ -88,7 +73,7 @@ public class AuftragsController : MonoBehaviour {
 
     }
 
-   public void ErzeugeNeuerAuftragsListe()
+    public void ErzeugeNeuerAuftragsListe()
     {
         auftragsClassList = AuftragsListeErzeugen.Create();
         if(auftragsClassList)
@@ -116,6 +101,31 @@ public class AuftragsController : MonoBehaviour {
         return id;
     }
 
-    
+   
+
+     public void Abarbeiten()
+    {
+       
+        if (wirdverarbeitet == true)
+        {
+            if(auftragsClassList.auftragsList[auftragsNummer].Zeit == auftragsClassList.auftragsList[auftragsNummer].verstricheneZeit)
+            {
+                Debug.Log("Es werden " + auftragsClassList.auftragsList[auftragsNummer].Bezahlung + " € ihrem Konto gut geschrieben");
+                gameControler.SpielerGeld = -1000;
+                Debug.Log(gameControler.SpielerGeld);
+                auftrag.text = "Der Auftrag :" + auftragsClassList.auftragsList[auftragsNummer].auftragsID + " wurde Fertig gestellt";
+                
+                AuftragLöschen(auftragsNummer);
+                wirdverarbeitet = false;
+            }
+            else
+            {
+                auftrag.text = "Der Auftrag :" + auftragsClassList.auftragsList[auftragsNummer].auftragsID + " wird bearbeitet";
+                auftragsClassList.auftragsList[auftragsNummer].verstricheneZeit++;
+                Debug.Log("Der auftrag benötigt noch " + (auftragsClassList.auftragsList[auftragsNummer].Zeit - auftragsClassList.auftragsList[auftragsNummer].verstricheneZeit));
+            }
+
+        }
+    }
 
 }

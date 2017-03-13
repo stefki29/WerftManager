@@ -11,9 +11,8 @@ public class TagesScript : MonoBehaviour {
 
     public int tag ;
 
-    public void Init()
+    public void Start()
     {
-       
         tag = 0;
         tage.text = "Tag: " + tag;
         InvokeRepeating("Wiederholung", Taggeschwiendigkeit, Taggeschwiendigkeit);
